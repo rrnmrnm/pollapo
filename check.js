@@ -18,6 +18,7 @@ function stat(replier) {
         }else{
             list = list + "오프라인\n";
         }
-replier.reply(list);
+
   }
+  replier.reply(list);
 }
