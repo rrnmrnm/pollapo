@@ -5,11 +5,11 @@ let  classes  =  ["weather.js",  "lol.js",  "teach.js",  "check.js",  "korean", 
 function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName, threadId){
 
 if (msg == "/시온봇 상태") {
-            stat();  
+     stat(replier);  
   }
 }
 
-function stat() {
+function stat(replier) {
     var list = "";
     for (var i = 0; i < classes.length; i++) {
         list = list + classes[i] + ": ";
