@@ -1,20 +1,20 @@
-const scriptName = "lol.js";
+if(msg.indexOf("가위바위보 ")==0){
+    var a = ["가위","바위","보","찌","묵","빠"]
+    var aa = [1,2,3,4,5,6]
+    var b = Math.floor(Math.random()*2)
+    a["가위"]=1; a["바위"]=2; a["보"]=3; a["찌"]=4; a["묵"]=5; a["빠"]=6;
+    var c = a[msg.substr(6)]-aa[b]
+    if(c == '-1'|| c == '2'){
+        a["가위"] = "바위"; a["바위"] = "보"; a["보"] = "가위"; 
+        a["찌"] = "바위"; a["묵"] ="보"; a["빠"] ="가위";
 
-function response(room, msg, sender, isGroupChat, replier, ImageDB, packageName, threadId) {
-  if (msg.indexOf("롤전적 ") == 0) {
-    var u = Utils.getWebText("http://www.op.gg/summoner/userName=" + encodeURI(msg.substr(4)))
-    var a = u.split("<meta name=\"description\" content=\"" + msg.substr(4))[1].split("\">")[0].replace(/, /g, "\n").replace(/[/]/g, "\n")
-    if (a.match("Challenger") == null) {
-      a = a.replace(/ (?!\d)/, "").split(" ");
-      b = a[1];
-      replier.reply("[" + msg.substr(4) + " 롤 전적]\n" + "티어: " + b + " " + a[3] + "\n" + "승리: " + a[5] + "\n" + "패배: " + a[6] + "\n" + "승률: " + a[9])
-    } else {
-      if (a == null || a == "") {
-        replier.reply("전적을 불러오는데 실패하였습니다.");
-      }else{
-        a = a.split(" ")
-        replier.reply("[" + msg.substr(4) + " 롤 전적]\n" + "티어: " + a[2] + " " + a[3] + "\n" + "승리: " + a[5] + "\n" + "패배: " + a[6] + "\n" + "승률: " + a[9])
-      }
+        
+        replier.reply("저는 "+a[msg.substr(6)]+"를 냈습니다.\n제가 이겼습니다.")
+    } else if(c == '1'||c == '-2'){
+        a["가위"] = "보"; a["바위"] = "가위"; a["보"] = "바위";
+        replier.reply("저는 "+a[msg.substr(6)]+"를 냈습니다.\n제가 졌습니다.")
+    } else if(c=='0'){
+        replier.reply("저는 "+msg.substr(6)+"를 냈습니다.\n비겼습니다.")
     }
-  }
 }
+[출처] 카톡봇 소스 - 가위바위보 소스|작성자 오몽스
