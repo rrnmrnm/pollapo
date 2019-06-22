@@ -13,7 +13,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB) {
 		var synCheck = msg.split(" ");
 		if(synCheck.length < 3){
 			print("오류 : 문법");
-		}else if (msg.includes("제목: ") && msg.includes(" 내용: ")){
+		}else if (msg.includes(" 제목: ") && msg.includes(" 내용: ")){
 			var title = msg.split(" ");
 			var titleStartIndex = title.indexOf("제목:")+1;
 			var titleEndIndex = title.indexOf("내용:");
