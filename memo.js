@@ -18,11 +18,17 @@ function response(room, msg, sender, isGroupChat, replier, imageDB) {
 			var titleStartIndex = title.indexOf("제목:")+1;
 			var titleEndIndex = title.indexOf("내용:");
 			for (var i = titleStartIndex; i < titleEndIndex; i++){
-				tempMemory = tempMemory + title[i] + " ";
+				if(i < titleEndIndex - 1){
+					tempMemory = tempMemory + title[i];
+				}else{
+					tempMemory = tempMemory + title[i] + " ";
+				}
 			}
+			var tmp = tempMemory.split(" ");
+			tempMemory = tmp.join(" ");
 			if(tempMemory.startsWith("~")){
 				print("오류 : 제목을 ~로 시작할 수 없습니다.");
-			}else if(tempMemory == ("  ")){
+			}else if(tempMemory == (" ")){
 				print("오류 : 제목  또는 내용이 비었습니다.");
 				tempMemory = "";
 			}else{
@@ -46,14 +52,20 @@ function response(room, msg, sender, isGroupChat, replier, imageDB) {
 			for (var i = titleStartIndex; i < titleEndIndex; i++){
 				tempMemory = tempMemory + title[i] + " ";
 			}
+			var tmp = tempMemory.split(" ");
+			tempMemory = tmp.join(" ");
 			if(tempMemory.startsWith("~")){
 				print("오류 : 제목을 ~로 시작할 수 없습니다.");
-			}else if(tempMemory == ("  ")){
+			}else if(tempMemory == (" ")){
 				print("오류 : 제목  또는 내용이 비었습니다.");
 				tempMemory = "";
-			}else{
-				memoryIndex.splice(tempMemory);
+			}else if(memoryIndex.indexOf(tempMemory)>-1){
+				memoryData = memoryData.splice(memoryData[memoryIndex.indexOf(tempMemory)]);
+				memoryIndex = memoryIndex.splice(tempMemory);
+				print("기록 " + tempMemory + " 이(가) 삭제되었습니다.");
 				tempMemory = "";
+			}else{
+				print("기록을 찾지 못하였습니다.");
 			}
 		}
   	}
